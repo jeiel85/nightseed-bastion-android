@@ -1,5 +1,18 @@
 # CHANGELOG.md
 
+## Unreleased
+
+### Added
+- `New Run` 버튼에서 기본 Moonwell Bastion 런을 시작하고 mock `GameRoot`로 진입
+- P0-003용 `GameRoot` mock 화면, 상태 디버그 오버레이, 수동 phase 진행 버튼
+- Night mock 결과를 승리/패배로 처리하는 RunStateMachine 연결
+
+### Documentation
+- P0-003 백로그 완료 상태, 작업 이력, mock GameRoot 결정 기록
+
+### Verification
+- `godot --headless --path . --quit` 실행 시도 실패: 현재 환경에서 `godot` 명령을 찾을 수 없음
+
 ## v0.1.1 - 2026-05-17
 
 ### Added

@@ -32,6 +32,7 @@ Acceptance criteria:
 
 **Type:** feat  
 **Goal:** Create full phase transition skeleton.
+**Status:** Done - mock `GameRoot` manual flow added on 2026-05-17.
 
 Acceptance criteria:
 

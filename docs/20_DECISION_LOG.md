@@ -69,3 +69,16 @@ Reason:
 - Autoload contracts in `docs/10_SCENE_SCRIPT_CONTRACTS.md` are now executable code, not just specification text.
 
 Status: Accepted
+
+## 2026-05-17 - Mock GameRoot drives first phase flow
+
+Decision:
+
+- Use a temporary `GameRoot` mock screen to own `RunStateMachine` and expose manual debug buttons for the first Day -> Dusk -> Night -> Dawn loop.
+
+Reason:
+
+- P0-003 needs the full run flow to be visible before map, hero, building, and wave systems exist.
+- Keeping the mock controller in `scenes/game/GameRoot.tscn` lets later P0 items replace placeholders incrementally without changing menu routing.
+
+Status: Accepted

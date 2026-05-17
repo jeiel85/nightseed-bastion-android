@@ -1,0 +1,106 @@
+[gd_scene load_steps=2 format=3 uid="uid://nsbgameroot001"]
+
+[ext_resource type="Script" path="res://scripts/game/GameRootController.gd" id="1_game_root"]
+
+[node name="GameRoot" type="Node2D"]
+script = ExtResource("1_game_root")
+
+[node name="WorldRoot" type="Node2D" parent="."]
+
+[node name="Background" type="ColorRect" parent="WorldRoot"]
+offset_right = 720.0
+offset_bottom = 1280.0
+color = Color(0.055, 0.065, 0.095, 1)
+
+[node name="CoreMarker" type="ColorRect" parent="WorldRoot"]
+offset_left = 300.0
+offset_top = 560.0
+offset_right = 420.0
+offset_bottom = 680.0
+color = Color(0.72, 0.82, 0.65, 1)
+
+[node name="LaneNorth" type="ColorRect" parent="WorldRoot"]
+offset_left = 346.0
+offset_right = 374.0
+offset_bottom = 560.0
+color = Color(0.21, 0.29, 0.38, 1)
+
+[node name="LaneEast" type="ColorRect" parent="WorldRoot"]
+offset_left = 420.0
+offset_top = 606.0
+offset_right = 720.0
+offset_bottom = 634.0
+color = Color(0.21, 0.29, 0.38, 1)
+
+[node name="LaneSouth" type="ColorRect" parent="WorldRoot"]
+offset_left = 346.0
+offset_top = 680.0
+offset_right = 374.0
+offset_bottom = 1280.0
+color = Color(0.21, 0.29, 0.38, 1)
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="DebugPanel" type="PanelContainer" parent="UILayer"]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 696.0
+offset_bottom = 140.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/DebugPanel"]
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/DebugPanel/MarginContainer"]
+
+[node name="StateLabel" type="Label" parent="UILayer/DebugPanel/MarginContainer/VBoxContainer"]
+text = "State: RUN_INIT"
+theme_override_font_sizes/font_size = 18
+
+[node name="DetailsLabel" type="Label" parent="UILayer/DebugPanel/MarginContainer/VBoxContainer"]
+text = "Night: 0/7 | Core: 100/100 | Seed: 0"
+theme_override_font_sizes/font_size = 14
+
+[node name="CenterContainer" type="CenterContainer" parent="UILayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 720.0
+offset_bottom = 1280.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/CenterContainer"]
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="UILayer/CenterContainer/VBoxContainer"]
+horizontal_alignment = 1
+text = "Mock Run Flow"
+theme_override_font_sizes/font_size = 34
+
+[node name="MessageLabel" type="Label" parent="UILayer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(620, 72)
+horizontal_alignment = 1
+autowrap_mode = 3
+text = "Initializing run."
+theme_override_font_sizes/font_size = 18
+
+[node name="ButtonRow" type="HBoxContainer" parent="UILayer/CenterContainer/VBoxContainer"]
+alignment = 1
+
+[node name="NextButton" type="Button" parent="UILayer/CenterContainer/VBoxContainer/ButtonRow"]
+custom_minimum_size = Vector2(160, 56)
+text = "Next"
+
+[node name="ClearNightButton" type="Button" parent="UILayer/CenterContainer/VBoxContainer/ButtonRow"]
+custom_minimum_size = Vector2(160, 56)
+text = "Clear Night"
+disabled = true
+
+[node name="LoseNightButton" type="Button" parent="UILayer/CenterContainer/VBoxContainer/ButtonRow"]
+custom_minimum_size = Vector2(160, 56)
+text = "Lose Night"
+disabled = true
+
+[connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/ButtonRow/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/ButtonRow/ClearNightButton" to="." method="_on_clear_night_button_pressed"]
+[connection signal="pressed" from="UILayer/CenterContainer/VBoxContainer/ButtonRow/LoseNightButton" to="." method="_on_lose_night_button_pressed"]
