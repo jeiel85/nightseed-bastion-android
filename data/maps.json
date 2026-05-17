@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "maps": [
+    {
+      "id": "moonwell_bastion",
+      "name_key": "map.moonwell_bastion.name",
+      "nights": 7,
+      "boss_night": 7,
+      "starting_moonshards": 60,
+      "core_hp": 100,
+      "lanes": [
+        {
+          "id": "north_ridge",
+          "name_key": "lane.north_ridge",
+          "danger_bias": "tank"
+        },
+        {
+          "id": "east_hollow",
+          "name_key": "lane.east_hollow",
+          "danger_bias": "swarm"
+        },
+        {
+          "id": "south_gravepath",
+          "name_key": "lane.south_gravepath",
+          "danger_bias": "ranged"
+        }
+      ],
+      "build_slots": [
+        {
+          "id": "slot_n1",
+          "lane_id": "north_ridge",
+          "allowed_tags": [
+            "tower",
+            "wall",
+            "support"
+          ],
+          "position": [
+            310,
+            420
+          ]
+        },
+        {
+          "id": "slot_n2",
+          "lane_id": "north_ridge",
+          "allowed_tags": [
+            "tower",
+            "trap"
+          ],
+          "position": [
+            390,
+            500
+          ]
+        },
+        {
+          "id": "slot_e1",
+          "lane_id": "east_hollow",
+          "allowed_tags": [
+            "tower",
+            "wall",
+            "trap"
+          ],
+          "position": [
+            510,
+            650
+          ]
+        },
+        {
+          "id": "slot_e2",
+          "lane_id": "east_hollow",
+          "allowed_tags": [
+            "economy",
+            "support"
+          ],
+          "position": [
+            430,
+            760
+          ]
+        },
+        {
+          "id": "slot_s1",
+          "lane_id": "south_gravepath",
+          "allowed_tags": [
+            "tower",
+            "trap"
+          ],
+          "position": [
+            275,
+            820
+          ]
+        },
+        {
+          "id": "slot_s2",
+          "lane_id": "south_gravepath",
+          "allowed_tags": [
+            "wall",
+            "support"
+          ],
+          "position": [
+            190,
+            735
+          ]
+        }
+      ]
+    }
+  ]
+}

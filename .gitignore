@@ -1,0 +1,49 @@
+# Godot 4
+.godot/
+.import/
+export.cfg
+export_presets.cfg.bak
+
+# Builds
+builds/
+dist/
+*.apk
+*.aab
+*.ipa
+*.exe
+*.msi
+*.zip
+*.dmg
+
+# Secrets / signing
+*.keystore
+*.jks
+*.p12
+*.mobileprovision
+*.cer
+*.pem
+.env
+.env.*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Claude Code local-only settings
+.claude/settings.local.json
+.claude/projects/
+.claude/cache/
+
+# Jekyll local build output (GitHub Pages builds remotely)
+docs/_site/
+docs/.jekyll-cache/
+docs/.jekyll-metadata
+docs/Gemfile.lock
+
+# Logs / cache
+*.log
+.cache/
+tmp/

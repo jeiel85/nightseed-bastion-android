@@ -1,0 +1,38 @@
+title: Nightseed Bastion
+description: >-
+  세로 모바일 요새 생존 전략 액션. 저주받은 달빛 성채의 마지막 지배자가 되어,
+  밤마다 몰려오는 어둠의 군세로부터 나이트시드를 지켜내세요.
+  A vertical mobile fortress-survival strategy game for Android-first release.
+author: jeiel85
+lang: ko
+url: "https://jeiel85.github.io"
+baseurl: "/nightseed-bastion"
+
+remote_theme: pages-themes/cayman@v0.2.0
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+  - jekyll-relative-links
+  - jekyll-sitemap
+
+relative_links:
+  enabled: true
+  collections: true
+
+include:
+  - "*.md"
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+show_downloads: true
+
+github:
+  owner_name: jeiel85
+  repository_name: nightseed-bastion
+  repository_url: https://github.com/jeiel85/nightseed-bastion
+  zip_url: https://github.com/jeiel85/nightseed-bastion/archive/refs/heads/main.zip
+  tar_url: https://github.com/jeiel85/nightseed-bastion/archive/refs/heads/main.tar.gz

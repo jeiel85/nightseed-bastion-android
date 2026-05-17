@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "dawn_rewards": [
+    {
+      "id": "moonshard_cache_small",
+      "name_key": "reward.moonshard_cache_small.name",
+      "type": "resource",
+      "payload": {
+        "moonshards": 30
+      },
+      "weight": 100
+    },
+    {
+      "id": "core_repair_small",
+      "name_key": "reward.core_repair_small.name",
+      "type": "repair",
+      "payload": {
+        "core_hp": 20
+      },
+      "weight": 80
+    },
+    {
+      "id": "tower_focus",
+      "name_key": "reward.tower_focus.name",
+      "type": "run_modifier",
+      "payload": {
+        "watchtower_damage_multiplier": 1.12
+      },
+      "weight": 50
+    }
+  ]
+}
