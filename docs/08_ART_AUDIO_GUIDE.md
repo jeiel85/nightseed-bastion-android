@@ -33,6 +33,18 @@ Before using in release:
 - Separate background art, logo, buttons, and icons into layered assets.
 - Ensure no UI element imitates another game.
 
+## Prototype Image Asset Inventory
+
+The first prototype image batch lives under `assets/art/` and is documented in `assets/art/README.md`.
+
+Current categories:
+
+- `assets/art/ui/`: ornate frame, panel, banner, and omen icon concepts.
+- `assets/art/resources/`: Moonshard and Nightseed crystal resource icon concepts.
+- `assets/art/buildings/`: Watchtower and Thorn Wall building concepts.
+
+These assets may be used for early scene mockups, but they are not final release art. Before production use, confirm transparent edges, pixel scale consistency, Korean/English UI fit, and originality against the IP guardrails.
+
 ## Audio Direction
 
 - Main menu: low drone, distant bell, soft ember crackle.

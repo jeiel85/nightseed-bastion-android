@@ -1,5 +1,25 @@
 # HISTORY.md
 
+## 2026-05-17 (4)
+
+- 작업: 기초 이미지 자산 정리 및 설명 기록
+- 변경 파일:
+  - `assets/art/ui/*.png`: UI 프레임, 배너, Nightseed omen 아이콘 콘셉트 자산 5종 이동/이름 정리
+  - `assets/art/resources/*.png`: Moonshard, Nightseed crystal 리소스 아이콘 콘셉트 자산 2종 이동/이름 정리
+  - `assets/art/buildings/*.png`: Watchtower, Thorn Wall 건물 콘셉트 자산 2종 이동/이름 정리
+  - `assets/art/README.md`: 자산 출처, 용도, 크기, 프로토타입 사용 주의사항 기록
+  - `docs/08_ART_AUDIO_GUIDE.md`: 프로토타입 이미지 자산 인벤토리 안내 추가
+  - `CHANGELOG.md`: 미출시 자산 정리 내역 기록
+- 검증:
+  - 로컬: 이미지 파일 9개 크기 확인 및 이동 후 대상 폴더 목록 확인.
+  - CI: 미구성.
+  - 생략한 검증: Godot 에디터 import, 실제 씬 적용, Android 디바이스 가독성 확인.
+- 결과: `docs/assets/.temp` 임시 자산을 런타임 자산 폴더로 정리하고 설명 문서를 추가.
+- 후속 작업:
+  - Godot import 설정 확인
+  - P0-005 맵 blockout 또는 UI mockup에 필요한 자산부터 선별 적용
+  - 릴리즈 전 최종 art pass에서 원본성/픽셀 스케일 재검토
+
 ## 2026-05-17 (3)
 
 - 작업: P0-003 RunStateMachine 수동 플로우 연결

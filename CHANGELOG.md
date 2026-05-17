@@ -6,9 +6,12 @@
 - `New Run` 버튼에서 기본 Moonwell Bastion 런을 시작하고 mock `GameRoot`로 진입
 - P0-003용 `GameRoot` mock 화면, 상태 디버그 오버레이, 수동 phase 진행 버튼
 - Night mock 결과를 승리/패배로 처리하는 RunStateMachine 연결
+- 프로토타입 이미지 자산 9종을 `assets/art/` 하위 폴더로 정리
+- `assets/art/README.md`에 자산 출처, 용도, 크기, 사용 주의사항 기록
 
 ### Documentation
 - P0-003 백로그 완료 상태, 작업 이력, mock GameRoot 결정 기록
+- `docs/08_ART_AUDIO_GUIDE.md`에 프로토타입 이미지 자산 인벤토리 안내 추가
 
 ### Verification
 - `godot --headless --path . --quit` 실행 시도 실패: 현재 환경에서 `godot` 명령을 찾을 수 없음
