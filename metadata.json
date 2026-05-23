@@ -1,0 +1,6 @@
+{
+  "name": "Nightseed Bastion",
+  "description": "A deep and immersive tactical rogue-lite defense mobile game. Build your fortress by day, make contracts with the shadow forces at dusk, and wage night battles to defend the last bastion.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
