@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nightseed Bastion · 나이트시드 배스천</title>
+<meta name="description" content="Nightseed Bastion(나이트시드 배스천) — 황혼이 깃든 마지막 요새를 지켜내는 세로 모바일 로그라이트 타워 디펜스. Defend the last bastion from the corrupted Nightseed.">
+<meta property="og:title" content="Nightseed Bastion · 나이트시드 배스천">
+<meta property="og:description" content="낮에는 건설하고, 황혼에는 거래하고, 밤에는 사수하라. 세로 한 손 전략 모바일 디펜스.">
+<meta property="og:image" content="https://jeiel85.github.io/nightseed-bastion/og-image.png">
+<meta property="og:url" content="https://jeiel85.github.io/nightseed-bastion/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-0: #0a0618;
+    --bg-1: #14092e;
+    --bg-2: #1d0e44;
+    --purple-glow: #8b5cf6;
+    --purple-deep: #6d28d9;
+    --gold: #d4af37;
+    --moon: #e9e0ff;
+    --text-primary: #f3effc;
+    --text-secondary: #b7adda;
+    --text-muted: #7a6da3;
+    --border: rgba(139, 92, 246, 0.25);
+    --card-bg: rgba(22, 12, 50, 0.55);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans KR', -apple-system, sans-serif;
+    background: var(--bg-0);
+    color: var(--text-primary);
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: -2;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(139, 92, 246, 0.18), transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(109, 40, 217, 0.15), transparent 50%),
+      linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: -1;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, white, transparent),
+      radial-gradient(1px 1px at 60% 70%, white, transparent),
+      radial-gradient(1px 1px at 30% 80%, white, transparent),
+      radial-gradient(2px 2px at 80% 20%, #e9e0ff, transparent),
+      radial-gradient(1px 1px at 45% 45%, white, transparent);
+    background-size: 800px 600px;
+    background-repeat: repeat;
+    opacity: 0.4;
+    animation: drift 120s linear infinite;
+  }
+  @keyframes drift {
+    from { transform: translateY(0); }
+    to { transform: translateY(-600px); }
+  }
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+  /* HERO */
+  .hero {
+    min-height: 92vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 80px 24px 60px;
+    position: relative;
+  }
+  .hero-art {
+    max-width: 340px;
+    width: 100%;
+    border-radius: 32px;
+    box-shadow:
+      0 0 80px rgba(139, 92, 246, 0.35),
+      0 0 0 1px rgba(139, 92, 246, 0.3);
+    margin-bottom: 36px;
+  }
+  .hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.6rem, 7vw, 4.8rem);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+    background: linear-gradient(180deg, #f5f0ff 0%, #b687ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    text-shadow: 0 4px 30px rgba(139, 92, 246, 0.3);
+  }
+  .hero h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.4rem, 4vw, 2.4rem);
+    font-weight: 600;
+    color: var(--purple-glow);
+    letter-spacing: 0.18em;
+    margin-bottom: 20px;
+  }
+  .hero .ko-title {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--text-secondary);
+    font-weight: 300;
+    margin-bottom: 14px;
+  }
+  .hero .tagline {
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    color: var(--text-secondary);
+    max-width: 620px;
+    margin: 0 auto 36px;
+    font-weight: 300;
+  }
+  .hero .badges { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 32px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 999px;
+    background: rgba(139, 92, 246, 0.12);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+  }
+  .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--purple-glow); }
+  .cta-group { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px; border-radius: 999px;
+    font-weight: 600; text-decoration: none;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--purple-glow), var(--purple-deep));
+    color: white;
+    box-shadow: 0 4px 30px rgba(139, 92, 246, 0.4);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(139, 92, 246, 0.55); }
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover { background: rgba(139, 92, 246, 0.15); border-color: var(--purple-glow); }
+
+  /* SECTIONS */
+  section { padding: 100px 0; }
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    text-align: center;
+    margin-bottom: 14px;
+    background: linear-gradient(180deg, #ffffff 0%, #c5a3ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.04em;
+  }
+  .section-sub {
+    text-align: center; color: var(--text-secondary);
+    max-width: 640px; margin: 0 auto 64px;
+    font-size: 1.05rem;
+  }
+
+  /* PILLARS */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+  }
+  .pillar {
+    padding: 32px 26px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .pillar:hover {
+    transform: translateY(-4px);
+    border-color: var(--purple-glow);
+    box-shadow: 0 20px 60px rgba(139, 92, 246, 0.25);
+  }
+  .pillar .icon { font-size: 2.2rem; margin-bottom: 14px; display: block; }
+  .pillar h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.25rem; margin-bottom: 8px;
+    color: var(--purple-glow);
+  }
+  .pillar h3 small { display: block; color: var(--text-muted); font-size: 0.8rem; font-weight: 400; margin-top: 4px; letter-spacing: 0.05em; }
+  .pillar p { color: var(--text-secondary); font-size: 0.92rem; }
+
+  /* LOOP */
+  .loop-section { background: linear-gradient(180deg, transparent 0%, rgba(76, 30, 140, 0.08) 50%, transparent 100%); }
+  .loop {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+    max-width: 940px;
+    margin: 0 auto;
+  }
+  .phase {
+    text-align: center;
+    padding: 28px 18px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    position: relative;
+  }
+  .phase .emoji { font-size: 2.8rem; display: block; margin-bottom: 10px; }
+  .phase h4 {
+    font-family: 'Cinzel', serif;
+    color: var(--gold); font-size: 1.05rem; margin-bottom: 4px;
+  }
+  .phase .ko { color: var(--text-primary); font-size: 0.95rem; margin-bottom: 8px; }
+  .phase .desc { color: var(--text-muted); font-size: 0.82rem; }
+
+  /* STATS */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    margin-top: 64px;
+  }
+  .stat {
+    text-align: center;
+    padding: 28px 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+  }
+  .stat .num {
+    font-family: 'Cinzel', serif;
+    font-size: 2.4rem;
+    background: linear-gradient(180deg, #ffd87a 0%, #d4af37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 4px;
+  }
+  .stat .label { color: var(--text-secondary); font-size: 0.9rem; }
+
+  /* DOWNLOAD CTA */
+  .download-cta {
+    text-align: center;
+    padding: 80px 24px;
+    margin: 80px 0;
+    background:
+      radial-gradient(ellipse at center, rgba(139, 92, 246, 0.2), transparent 70%),
+      linear-gradient(180deg, rgba(22, 12, 50, 0.6), rgba(13, 6, 31, 0.6));
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .download-cta h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 14px;
+    background: linear-gradient(180deg, #ffffff 0%, #c5a3ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .download-cta p { color: var(--text-secondary); margin-bottom: 32px; font-size: 1.05rem; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 50px 24px 40px;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--purple-glow); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .footer-links {
+    display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 640px) {
+    .hero { padding-top: 60px; }
+    .hero-art { max-width: 260px; border-radius: 28px; }
+    section { padding: 70px 0; }
+    .pillars, .loop, .stats { gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img src="key-visual/Nightseed%20Bastion.png" alt="Nightseed Bastion key visual" class="hero-art">
+  <h1>NIGHTSEED</h1>
+  <h2>BASTION</h2>
+  <div class="ko-title">나이트시드 배스천</div>
+  <p class="tagline">낮에는 요새를 짓고, 황혼에는 어둠과 거래하고, 밤에는 영웅을 직접 조작하여 마지막 등불을 지켜내라.</p>
+  <div class="badges">
+    <span class="badge"><span class="dot"></span>Android</span>
+    <span class="badge"><span class="dot"></span>Portrait 9:16</span>
+    <span class="badge"><span class="dot"></span>Rogue-lite</span>
+    <span class="badge"><span class="dot"></span>Tower Defense</span>
+    <span class="badge"><span class="dot"></span>Offline · No Ads</span>
+  </div>
+  <div class="cta-group">
+    <a href="https://play.google.com/store/apps/details?id=com.jeiel85.nightseedbastion" class="btn btn-primary">
+      ▶ Play Store에서 받기
+    </a>
+    <a href="https://github.com/jeiel85/nightseed-bastion" class="btn btn-secondary">
+      ⌘ GitHub 저장소
+    </a>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <h2 class="section-title">Five Pillars · 핵심 차별화</h2>
+    <p class="section-sub">PC RTS를 그대로 옮긴 UI 대신, 처음부터 9:16 한 손 모바일을 위해 설계된 다섯 가지 기둥.</p>
+    <div class="pillars">
+      <article class="pillar">
+        <span class="icon">👍</span>
+        <h3>세로 한 손 전략<small>Vertical One-Thumb Strategy</small></h3>
+        <p>엄지 하나로 끝내는 9:16 인터페이스. 출퇴근 한 손으로 풀 런을 마치도록 설계.</p>
+      </article>
+      <article class="pillar">
+        <span class="icon">🌒</span>
+        <h3>황혼 오멘<small>Dusk Omen</small></h3>
+        <p>전투 직전, 어느 레인에 어떤 적이 올지 미리 읽는다. 매 밤은 정보 게임에서 시작.</p>
+      </article>
+      <article class="pillar">
+        <span class="icon">⚖️</span>
+        <h3>황혼 거래<small>Dusk Bargain</small></h3>
+        <p>강력한 보상을 위해 영구 체력을 깎거나 웨이브를 가속하는 위험-보상 선택.</p>
+      </article>
+      <article class="pillar">
+        <span class="icon">⚔️</span>
+        <h3>영웅 × 요새 하이브리드<small>Hero × Bastion</small></h3>
+        <p>방랑하는 워든을 직접 조작하면서, 자동 작동하는 타워·벽·함정과 함께 싸운다.</p>
+      </article>
+      <article class="pillar">
+        <span class="icon">🌱</span>
+        <h3>런 기반 성채 진화<small>Run-Based Bastion</small></h3>
+        <p>한 판마다 임시 성채, 메타 진척으로 영구 해금. <em>No gacha. No pay-to-win.</em></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="loop-section">
+  <div class="container">
+    <h2 class="section-title">Core Loop · 코어 루프</h2>
+    <p class="section-sub">새벽 보상 → 낮 건설 → 황혼 오멘 → 황혼 거래 → 밤 전투. 한 사이클 90~150초.</p>
+    <div class="loop">
+      <div class="phase">
+        <span class="emoji">🌅</span>
+        <h4>DAWN</h4>
+        <div class="ko">새벽 보상</div>
+        <div class="desc">전투 후 자원·해금 회수</div>
+      </div>
+      <div class="phase">
+        <span class="emoji">☀️</span>
+        <h4>DAY</h4>
+        <div class="ko">낮 건설</div>
+        <div class="desc">월웰·감시탑·가시 장벽 배치</div>
+      </div>
+      <div class="phase">
+        <span class="emoji">🌆</span>
+        <h4>DUSK</h4>
+        <div class="ko">황혼의 거래</div>
+        <div class="desc">전조 분석 · 위험한 계약</div>
+      </div>
+      <div class="phase">
+        <span class="emoji">🌙</span>
+        <h4>NIGHT</h4>
+        <div class="ko">밤 전투</div>
+        <div class="desc">영웅 조작 · 요새 사수</div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="num">90~150s</div><div class="label">한 번의 밤</div></div>
+      <div class="stat"><div class="num">12~18m</div><div class="label">풀 런 (승리)</div></div>
+      <div class="stat"><div class="num">7</div><div class="label">생존해야 할 밤</div></div>
+      <div class="stat"><div class="num">0₩</div><div class="label">결제 없음 · 광고 없음</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="download-cta">
+  <div class="container">
+    <h2>마지막 등불을 지켜내라</h2>
+    <p>지금 Play Store에서 무료로 다운로드하세요. 인앱결제·광고 없음.</p>
+    <div class="cta-group">
+      <a href="https://play.google.com/store/apps/details?id=com.jeiel85.nightseedbastion" class="btn btn-primary">
+        ▶ Get it on Play Store
+      </a>
+      <a href="privacy.html" class="btn btn-secondary">개인정보처리방침</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="https://github.com/jeiel85/nightseed-bastion">GitHub</a>
+    <a href="https://play.google.com/store/apps/details?id=com.jeiel85.nightseedbastion">Play Store</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="mailto:pedaiah85@gmail.com">Contact</a>
+  </div>
+  <div>© 2026 jeiel85 · Made with 🌙 in Korea</div>
+  <div style="margin-top: 8px; color: var(--text-muted); font-size: 0.78rem;">
+    Package: <code style="background: rgba(139,92,246,0.1); padding: 2px 8px; border-radius: 6px;">com.jeiel85.nightseedbastion</code>
+  </div>
+</footer>
+
+</body>
+</html>
