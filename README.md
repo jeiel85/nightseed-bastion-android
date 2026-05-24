@@ -5,21 +5,34 @@
 </p>
 
 <p align="center">
-  <a href="https://jeiel85.github.io/nightseed-bastion/">🌐 Project Site</a> ·
+  <a href="https://jeiel85.github.io/nightseed-bastion-preproduction/">🌐 Landing Site</a> ·
+  <a href="https://play.google.com/store/apps/details?id=com.jeiel85.nightseedbastion">▶️ Play Store</a> ·
   <a href="docs/00_START_HERE.md">🚀 Start Here</a> ·
   <a href="docs/02_GAME_DESIGN_DOCUMENT.md">📘 Game Design Doc</a> ·
-  <a href="docs/13_BACKLOG.md">📋 Backlog</a> ·
+  <a href="docs/privacy.html">🔒 Privacy</a> ·
   <a href="CHANGELOG.md">📝 Changelog</a>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/engine-Godot%204.x-478CBF?logo=godot-engine&logoColor=white" />
-  <img src="https://img.shields.io/badge/language-GDScript-355570" />
+  <a href="https://play.google.com/store/apps/details?id=com.jeiel85.nightseedbastion">
+    <img src="https://img.shields.io/badge/Google%20Play-Internal%20Testing-3DDC84?logo=google-play&logoColor=white" alt="Google Play status" />
+  </a>
+  <img src="https://img.shields.io/badge/build-Kotlin%20%2B%20Compose-7F52FF?logo=kotlin&logoColor=white" />
+  <img src="https://img.shields.io/badge/design-Godot%204.x-478CBF?logo=godot-engine&logoColor=white" />
   <img src="https://img.shields.io/badge/platform-Android%20first-3DDC84?logo=android&logoColor=white" />
   <img src="https://img.shields.io/badge/orientation-Portrait%209%3A16-7C3AED" />
   <img src="https://img.shields.io/badge/locale-ko%20%2F%20en-orange" />
-  <img src="https://img.shields.io/badge/status-pre--alpha%20design-lightgrey" />
+  <img src="https://img.shields.io/badge/monetization-free%20%C2%B7%20no%20ads-success" />
 </p>
+
+<p align="center">
+  <a href="docs/screenshots/phone-01.png"><img src="docs/screenshots/phone-01.png" width="160" alt="Main menu" /></a>
+  <a href="docs/screenshots/phone-02.png"><img src="docs/screenshots/phone-02.png" width="160" alt="Day phase build" /></a>
+  <a href="docs/screenshots/phone-03.png"><img src="docs/screenshots/phone-03.png" width="160" alt="Deploy defenses" /></a>
+  <a href="docs/screenshots/phone-04.png"><img src="docs/screenshots/phone-04.png" width="160" alt="Dusk omens & bargains" /></a>
+  <a href="docs/screenshots/phone-05.png"><img src="docs/screenshots/phone-05.png" width="160" alt="Night combat" /></a>
+</p>
+<p align="center"><sub>Main menu · Day build · Deploy menu · Dusk bargain · Night combat</sub></p>
 
 ---
 
