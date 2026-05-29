@@ -1,0 +1,33 @@
+# Default behaviour: normalize line endings on commit, check out native on Windows.
+* text=auto
+
+# Force LF for source/text files Godot and tooling will read on every platform.
+*.gd        text eol=lf
+*.tscn      text eol=lf
+*.tres      text eol=lf
+*.cfg       text eol=lf
+*.godot     text eol=lf
+*.gdshader  text eol=lf
+*.json      text eol=lf
+*.md        text eol=lf
+*.csv       text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+*.py        text eol=lf
+*.sh        text eol=lf
+
+# Binary assets — never auto-normalize.
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.webp      binary
+*.gif       binary
+*.ico       binary
+*.ttf       binary
+*.otf       binary
+*.wav       binary
+*.ogg       binary
+*.mp3       binary
+*.apk       binary
+*.aab       binary
+*.keystore  binary

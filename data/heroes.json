@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "heroes": [
+    {
+      "id": "vagrant_warden",
+      "name_key": "hero.vagrant_warden.name",
+      "max_hp": 120,
+      "move_speed": 150,
+      "basic_attack": {
+        "damage": 9,
+        "range": 38,
+        "cooldown": 0.55,
+        "arc_degrees": 80
+      },
+      "skills": [
+        {
+          "id": "mooncut",
+          "name_key": "skill.mooncut.name",
+          "cooldown": 7.0,
+          "damage": 28,
+          "dash_distance": 90
+        },
+        {
+          "id": "wardens_mark",
+          "name_key": "skill.wardens_mark.name",
+          "cooldown": 14.0,
+          "duration": 5.0,
+          "tower_damage_taken_multiplier": 1.35
+        }
+      ],
+      "passive": {
+        "id": "last_lantern",
+        "trigger_core_hp_ratio": 0.3,
+        "duration": 8.0,
+        "damage_multiplier": 1.25,
+        "move_speed_multiplier": 1.2
+      }
+    }
+  ]
+}

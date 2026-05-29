@@ -1,0 +1,20 @@
+key,text
+app.title,Nightseed Bastion
+menu.continue,Continue
+menu.new_run,New Run
+menu.heroes,Heroes
+menu.codex,Codex
+menu.settings,Settings
+phase.day,Day
+phase.dusk,Dusk
+phase.night,Night
+phase.dawn,Dawn
+building.watchtower.name,Watchtower
+building.watchtower.desc,A basic defense building that attacks the nearest enemy.
+building.moonwell.name,Moonwell
+building.moonwell.desc,Generates Moonshards at dawn.
+enemy.huskling.name,Huskling
+hero.vagrant_warden.name,Vagrant Warden
+resource.moonshard,Moonshard
+resource.ember,Ember
+resource.seed_ash,Seed Ash

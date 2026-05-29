@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "map_id": "moonwell_bastion",
+  "nights": [
+    {
+      "night_index": 1,
+      "omen_level": 1,
+      "waves": [
+        {
+          "wave_id": "n1_w1",
+          "spawn_time": 0.0,
+          "lane_id": "east_hollow",
+          "enemy_id": "huskling",
+          "count": 8,
+          "interval": 0.8,
+          "modifiers": {}
+        },
+        {
+          "wave_id": "n1_w2",
+          "spawn_time": 12.0,
+          "lane_id": "north_ridge",
+          "enemy_id": "huskling",
+          "count": 6,
+          "interval": 0.9,
+          "modifiers": {}
+        }
+      ]
+    },
+    {
+      "night_index": 2,
+      "omen_level": 1,
+      "waves": [
+        {
+          "wave_id": "n2_w1",
+          "spawn_time": 0.0,
+          "lane_id": "east_hollow",
+          "enemy_id": "bone_runner",
+          "count": 5,
+          "interval": 1.0,
+          "modifiers": {}
+        },
+        {
+          "wave_id": "n2_w2",
+          "spawn_time": 10.0,
+          "lane_id": "south_gravepath",
+          "enemy_id": "huskling",
+          "count": 10,
+          "interval": 0.7,
+          "modifiers": {}
+        }
+      ]
+    },
+    {
+      "night_index": 7,
+      "omen_level": 3,
+      "waves": [
+        {
+          "wave_id": "n7_boss",
+          "spawn_time": 5.0,
+          "lane_id": "north_ridge",
+          "enemy_id": "nightseed_herald",
+          "count": 1,
+          "interval": 0.0,
+          "modifiers": {
+            "boss": true
+          }
+        },
+        {
+          "wave_id": "n7_adds",
+          "spawn_time": 18.0,
+          "lane_id": "east_hollow",
+          "enemy_id": "huskling",
+          "count": 18,
+          "interval": 0.45,
+          "modifiers": {}
+        }
+      ]
+    }
+  ]
+}

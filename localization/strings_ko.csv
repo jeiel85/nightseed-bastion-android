@@ -1,0 +1,20 @@
+key,text
+app.title,Nightseed Bastion
+menu.continue,계속하기
+menu.new_run,새 게임
+menu.heroes,영웅
+menu.codex,도감
+menu.settings,설정
+phase.day,낮
+phase.dusk,황혼
+phase.night,밤
+phase.dawn,새벽
+building.watchtower.name,감시탑
+building.watchtower.desc,가장 가까운 적을 공격하는 기본 방어 건물입니다.
+building.moonwell.name,달샘
+building.moonwell.desc,새벽마다 문샤드를 생성합니다.
+enemy.huskling.name,허스클링
+hero.vagrant_warden.name,방랑 감시자
+resource.moonshard,문샤드
+resource.ember,불씨
+resource.seed_ash,씨앗재

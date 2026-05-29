@@ -1,26 +1,71 @@
+# ── Android / Gradle (Android-native app) ──
 *.iml
 .gradle
 .kotlin
 /local.properties
+local.properties
 /.idea/caches
 /.idea/libraries
 /.idea/modules.xml
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
-.DS_Store
 /build
 /captures
 .externalNativeBuild
 .cxx
-local.properties
 .env
+.env.*
 debug.keystore
+
 # Release signing — never commit keystore or its passwords
 /.keystore/
 /keystore.properties
 *.jks
+*.keystore
+*.p12
+*.mobileprovision
+*.cer
+*.pem
+
+# Build artifacts
+builds/
+dist/
+*.apk
+*.aab
+*.ipa
+*.exe
+*.msi
+*.zip
+*.dmg
 
 # Local agent/session state and throwaway scratch files
 /.claude/
 /scratch/
+.claude/settings.local.json
+.claude/projects/
+.claude/cache/
+
+# ── Godot 4 (historical preproduction prototype) ──
+.godot/
+.import/
+export.cfg
+export_presets.cfg.bak
+
+# Jekyll local build output (GitHub Pages builds remotely)
+docs/_site/
+docs/.jekyll-cache/
+docs/.jekyll-metadata
+docs/Gemfile.lock
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Logs / cache
+*.log
+.cache/
+tmp/

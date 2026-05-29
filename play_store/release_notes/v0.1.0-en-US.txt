@@ -1,0 +1,4 @@
+Initial internal documentation release.
+- Added Nightseed Bastion project design documents.
+- Defined Android-first development and release rules.
+- No playable build is included yet.

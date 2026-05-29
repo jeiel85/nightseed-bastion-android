@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "bargains": [
+    {
+      "id": "blood_mortar",
+      "name_key": "bargain.blood_mortar.name",
+      "description_key": "bargain.blood_mortar.desc",
+      "benefit": {
+        "tower_damage_multiplier": 1.25
+      },
+      "cost": {
+        "core_max_hp_delta": -10
+      },
+      "rarity": "common"
+    },
+    {
+      "id": "hungry_walls",
+      "name_key": "bargain.hungry_walls.name",
+      "description_key": "bargain.hungry_walls.desc",
+      "benefit": {
+        "wall_regen_per_sec": 2
+      },
+      "cost": {
+        "enemy_spawn_rate_multiplier": 1.15
+      },
+      "rarity": "common"
+    },
+    {
+      "id": "ashen_tithe",
+      "name_key": "bargain.ashen_tithe.name",
+      "description_key": "bargain.ashen_tithe.desc",
+      "benefit": {
+        "moonshards_now": 40
+      },
+      "cost": {
+        "dawn_reward_choice_delta": -1
+      },
+      "rarity": "uncommon"
+    },
+    {
+      "id": "lantern_oath",
+      "name_key": "bargain.lantern_oath.name",
+      "description_key": "bargain.lantern_oath.desc",
+      "benefit": {
+        "hero_skill_cooldown_multiplier": 0.8
+      },
+      "cost": {
+        "inject_elite": "lantern_eater"
+      },
+      "rarity": "uncommon"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "enemies": [
+    {
+      "id": "huskling",
+      "name_key": "enemy.huskling.name",
+      "role": "swarm",
+      "hp": 18,
+      "speed": 62,
+      "damage": 4,
+      "armor": 0,
+      "attack_range": 18,
+      "attack_cooldown": 1.1,
+      "targeting": "core",
+      "reward": {
+        "ember": 1
+      }
+    },
+    {
+      "id": "bone_runner",
+      "name_key": "enemy.bone_runner.name",
+      "role": "fast",
+      "hp": 14,
+      "speed": 105,
+      "damage": 3,
+      "armor": 0,
+      "attack_range": 16,
+      "attack_cooldown": 0.85,
+      "targeting": "core",
+      "reward": {
+        "ember": 1
+      }
+    },
+    {
+      "id": "grave_brute",
+      "name_key": "enemy.grave_brute.name",
+      "role": "tank",
+      "hp": 85,
+      "speed": 38,
+      "damage": 10,
+      "armor": 2,
+      "attack_range": 22,
+      "attack_cooldown": 1.6,
+      "targeting": "walls_first",
+      "reward": {
+        "ember": 4
+      }
+    },
+    {
+      "id": "lantern_eater",
+      "name_key": "enemy.lantern_eater.name",
+      "role": "support",
+      "hp": 45,
+      "speed": 48,
+      "damage": 2,
+      "armor": 0,
+      "attack_range": 80,
+      "attack_cooldown": 2.0,
+      "targeting": "support_buildings",
+      "aura": {
+        "skill_charge_multiplier": 0.75
+      },
+      "reward": {
+        "ember": 3
+      }
+    },
+    {
+      "id": "hex_archer",
+      "name_key": "enemy.hex_archer.name",
+      "role": "ranged",
+      "hp": 32,
+      "speed": 42,
+      "damage": 7,
+      "armor": 0,
+      "attack_range": 130,
+      "attack_cooldown": 1.8,
+      "targeting": "nearest_defense",
+      "reward": {
+        "ember": 2
+      }
+    },
+    {
+      "id": "nightseed_herald",
+      "name_key": "enemy.nightseed_herald.name",
+      "role": "boss",
+      "hp": 900,
+      "speed": 34,
+      "damage": 18,
+      "armor": 4,
+      "attack_range": 40,
+      "attack_cooldown": 1.4,
+      "targeting": "core",
+      "reward": {
+        "seed_ash": 25
+      }
+    }
+  ]
+}
