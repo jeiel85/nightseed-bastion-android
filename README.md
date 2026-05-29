@@ -128,7 +128,16 @@
 ## 🗺️ 폴더 구조 / Repository Map
 
 ```text
-nightseed-bastion/
+nightseed-bastion-android/
+│
+│  ── 실제 제품 / Shipping product (Android 네이티브) ──
+├── app/                 Kotlin + Jetpack Compose — 모든 게임플레이 코드
+│                        (data/ · game/GameViewModel · ui/screens + BattleSprites)
+├── build.gradle.kts · settings.gradle.kts · gradle/   Gradle 빌드
+├── scripts/             export-play-store-release.ps1 (AAB 내보내기·검증)
+├── store_assets/        Play Store 아이콘 · 피처 그래픽
+│
+│  ── 초기 프리프로덕션 계획 자료 / Historical preproduction (빌드 제외) ──
 ├── assets/              아트, 오디오, 폰트, 콘셉트 레퍼런스
 │   ├── art/             buildings · characters · enemies · ui
 │   ├── audio/           bgm · sfx
@@ -160,13 +169,13 @@ nightseed-bastion/
 
 ## 🧱 기술 골격 / Tech Foundation
 
-- **Engine:** Godot 4.x · GDScript
-- **Architecture:** 작은 씬 + autoload 매니저 + 데이터 주도 (`data/*.json`)
-- **Autoloads:** `AppConfig`, `SceneRouter`, `SaveManager`, `DataRegistry`, `RunManager`, `EventBus` *(상세: [10_SCENE_SCRIPT_CONTRACTS.md](docs/10_SCENE_SCRIPT_CONTRACTS.md))*
-- **Save:** `user://` 저장 + 스키마 버저닝 (v1 출시 시점부터 마이그레이션 보장)
-- **Performance Target:** 60fps 권장 / 최소 30fps, 동시 적 80체, 발사체 120개
+- **Stack:** Android 네이티브 · Kotlin · Jetpack Compose (Material 3)
+- **Architecture:** `GameViewModel` 단일 상태 머신(StateFlow) + Compose 화면 + Room 영속화
+- **Rendering:** 전투 화면은 Compose `Canvas`에 절차적으로 그림 — 외부 스프라이트 없이 적/영웅/건물을 도형으로 렌더 ([BattleSprites.kt](app/src/main/java/com/jeiel85/nightseedbastion/ui/screens/BattleSprites.kt))
+- **Save:** Room DB(`account_state`, `active_run`) + Moshi JSON 직렬화
+- **Performance:** 고빈도 상태를 draw 단계로 deferred read 하여 프레임당 recomposition 회피
 
-전체 아키텍처는 [docs/09_TECHNICAL_ARCHITECTURE.md](docs/09_TECHNICAL_ARCHITECTURE.md), 데이터 스키마는 [docs/11_DATA_SCHEMA.md](docs/11_DATA_SCHEMA.md) 참고.
+> 참고: 아래 `docs/09_TECHNICAL_ARCHITECTURE.md` 등 설계 문서는 Godot 시절 기준이라 현재 Android 구현과 다를 수 있습니다.
 
 ---
 
@@ -174,31 +183,28 @@ nightseed-bastion/
 
 ### 1. 필수 도구
 
-- [Godot 4.2+](https://godotengine.org/download) (GDScript)
-- Python 3.10+ (선택, `tools/validate_json.py` 실행용)
-- Android Studio SDK + JDK 17 (안드로이드 빌드 시)
+- [Android Studio](https://developer.android.com/studio) (최신) + Android SDK
+- JDK 17
 
-### 2. 프로젝트 열기
-
-```bash
-git clone https://github.com/jeiel85/nightseed-bastion.git
-cd nightseed-bastion
-# Godot 에디터에서 project.godot 열기
-```
-
-### 3. JSON 데이터 검증
+### 2. 빌드 & 실행
 
 ```bash
-python tools/validate_json.py
+git clone https://github.com/jeiel85/nightseed-bastion-android.git
+cd nightseed-bastion-android
+./gradlew :app:installDebug      # 연결된 기기/에뮬에 설치
+# 또는 Android Studio에서 app 모듈 실행
 ```
 
-### 4. 헤드리스 부팅 (CI/스모크 테스트)
+### 3. 릴리스 번들 & 스토어 내보내기
 
-```bash
-godot --headless --path . --quit
+```powershell
+./gradlew clean :app:bundleRelease                 # 서명된 AAB 생성
+./scripts/export-play-store-release.ps1            # 노트 500자 검증 + Build\로 복사
 ```
 
-> 본격 구현이 시작되면 `docs/13_BACKLOG.md`의 **P0-001 → P0-010**을 순서대로 진행합니다.
+> 릴리스 서명은 루트의 `keystore.properties`(커밋 제외)로 설정합니다. 없으면 디버그 키로 폴백합니다.
+
+> 아래 *프리프로덕션 설계 자료*(Godot 프로젝트, `docs/00~20`)는 과거 계획 기록으로만 보존되며 현재 빌드와 무관합니다.
 
 ---
 
