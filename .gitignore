@@ -16,3 +16,11 @@
 local.properties
 .env
 debug.keystore
+# Release signing — never commit keystore or its passwords
+/.keystore/
+/keystore.properties
+*.jks
+
+# Local agent/session state and throwaway scratch files
+/.claude/
+/scratch/

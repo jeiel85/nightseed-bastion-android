@@ -1,0 +1,6 @@
+<ko-KR>
+나이트시드 배스천 v1.0.4 - 기기 시스템 언어에 따라 한국어/영어 UI가 자동 적용됩니다. 건물, 적, 코덱스, 계약, 전투 HUD 등 핵심 게임 용어를 전술 방어 게임 맥락에 맞춰 자연스럽게 다듬었습니다.
+</ko-KR>
+<en-US>
+Nightseed Bastion v1.0.4 - Added automatic Korean/English UI support based on the device system language, with polished game terminology across structures, enemies, codex entries, bargains, battle HUD, and run results.
+</en-US>

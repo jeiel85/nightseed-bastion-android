@@ -1,3 +1,13 @@
+import java.util.Properties
+import java.io.FileInputStream
+import java.io.File
+
+val keystoreProperties = Properties()
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+}
+
 plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.compose)
@@ -7,29 +17,41 @@ plugins {
 }
 
 android {
-  namespace = "com.example"
+  namespace = "com.jeiel85.nightseedbastion"
   compileSdk { version = release(36) { minorApiLevel = 1 } }
 
   defaultConfig {
-    applicationId = "com.aistudio.nightseedbastion.gamedef"
+    applicationId = "com.jeiel85.nightseedbastion"
     minSdk = 24
     targetSdk = 36
-    versionCode = 1
-    versionName = "1.0"
+    versionCode = 9
+    versionName = "1.0.6"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
 
   signingConfigs {
     create("release") {
-      val keystorePath = System.getenv("KEYSTORE_PATH") ?: "${rootDir}/my-upload-key.jks"
-      storeFile = file(keystorePath)
-      storePassword = System.getenv("STORE_PASSWORD")
-      keyAlias = "upload"
-      keyPassword = System.getenv("KEY_PASSWORD")
+      if (keystorePropertiesFile.exists()) {
+        val storePath = keystoreProperties["storeFile"] as String?
+        storeFile = if (storePath != null) {
+          val f = File(storePath)
+          if (f.isAbsolute) f else rootProject.file(storePath)
+        } else {
+          rootProject.file("debug.keystore")
+        }
+        storePassword = keystoreProperties["storePassword"] as String?
+        keyAlias = keystoreProperties["keyAlias"] as String?
+        keyPassword = keystoreProperties["keyPassword"] as String?
+      } else {
+        storeFile = rootProject.file("debug.keystore")
+        storePassword = "android"
+        keyAlias = "androiddebugkey"
+        keyPassword = "android"
+      }
     }
     create("debugConfig") {
-      storeFile = file("${rootDir}/debug.keystore")
+      storeFile = rootProject.file("debug.keystore")
       storePassword = "android"
       keyAlias = "androiddebugkey"
       keyPassword = "android"

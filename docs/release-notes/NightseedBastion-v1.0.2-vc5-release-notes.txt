@@ -1,0 +1,6 @@
+﻿<ko-KR>
+나이트시드 배스천 v1.0.2 - 타락한 나이트시드와 어둠의 요새 감성을 담은 신규 프리미엄 앱 아이콘 및 스토어 그래픽 애셋이 정식 적용되었습니다.
+</ko-KR>
+<en-US>
+Nightseed Bastion v1.0.2 - Official integration of the stunning new premium dark-fantasy app launcher icon and Play Store graphic assets.
+</en-US>

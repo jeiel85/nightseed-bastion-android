@@ -1,0 +1,6 @@
+﻿<ko-KR>
+나이트시드 배스천 v1.0.5 - 황혼 진입 시 앱이 종료되던 문제를 수정했습니다. 이제 어느 밤에서든 정비를 마치고 황혼 경보를 안정적으로 발령할 수 있습니다.
+</ko-KR>
+<en-US>
+Nightseed Bastion v1.0.5 - Fixed a crash that closed the app when initiating Dusk. You can now wrap up day-build maintenance and trigger the dusk warning reliably on any night.
+</en-US>

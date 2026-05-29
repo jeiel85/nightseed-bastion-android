@@ -1,0 +1,6 @@
+<ko-KR>
+나이트시드 배스천 v1.0.6 - 전투 경험을 대폭 개선했습니다. 이제 영웅을 탭한 위치로 부드럽게 이동시킬 수 있고(가로모드 조작 오류 수정), 영웅 체력·전투불능·부활 시스템이 새로 추가되었습니다. 적과 영웅, 방어 구조물이 종류별로 고유한 모습으로 새롭게 그려지며 스킬 타격감과 전투 연출이 한층 강화되었습니다. 또한 전투 화면 렌더링을 최적화해 고주사율 기기에서의 프레임 끊김을 줄였습니다.
+</ko-KR>
+<en-US>
+Nightseed Bastion v1.0.6 - A major combat overhaul. Tap to move the Warden smoothly to any spot (landscape control bug fixed), with a brand-new hero health, downed, and revive system. Enemies, the hero, and defensive structures are now drawn with distinct silhouettes for every type, and skill impact and combat effects hit harder. Battle rendering was also optimized to reduce frame stutter on high-refresh displays.
+</en-US>

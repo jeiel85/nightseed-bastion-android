@@ -1,0 +1,6 @@
+﻿<ko-KR>
+나이트시드 배스천 v1.0.3 - 태블릿 및 폴더블 기기 대응을 위해 가로모드(Landscape) 레이아웃 최적화가 전면 도입되었습니다. 메인 메뉴, 건설 국면, 실시간 전투 현장의 넓은 화면이 최적화되어 더욱 몰입감 넘치는 방어 플레이를 제공합니다.
+</ko-KR>
+<en-US>
+Nightseed Bastion v1.0.3 - Full landscape layout optimization for tablets, foldables, and horizontal play! Experience beautifully tailored splits for the Main Menu, Day Build screen, and Night Battle arena, providing spacious cosmic defense controls.
+</en-US>
