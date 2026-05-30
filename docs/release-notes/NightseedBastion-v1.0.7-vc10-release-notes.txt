@@ -1,0 +1,6 @@
+<ko-KR>
+나이트시드 배스천 v1.0.7 - 뒤로 가기 버튼이 이제 화면 단계에 맞게 동작합니다. 게임 도중 뒤로 가기를 눌러도 앱이 곧바로 종료되지 않고, 황혼·낮 건설 화면으로 한 단계씩 돌아가거나 메뉴로 나갈 수 있습니다. 전투 중에는 포기 여부를 먼저 확인해 실수로 진행 중인 밤을 잃지 않도록 했습니다. 진행 중이던 방어전은 그대로 저장되어 이어서 플레이할 수 있습니다.
+</ko-KR>
+<en-US>
+Nightseed Bastion v1.0.7 - The back button now follows each screen step. Pressing back during play no longer slams the app shut: it steps back one level to the Dusk or Day build screen, or out to the menu. During a battle it asks before you abandon the night, so an in-progress defense isn't lost by accident. Your run stays saved and ready to resume.
+</en-US>
