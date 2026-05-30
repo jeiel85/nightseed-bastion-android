@@ -1,5 +1,6 @@
 package com.jeiel85.nightseedbastion.ui.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -29,6 +30,9 @@ fun VictoryScreen(
     modifier: Modifier = Modifier
 ) {
     val statsSummary by viewModel.runStatsSummary.collectAsState()
+
+    // The run is already resolved here; back returns to the main menu.
+    BackHandler { viewModel.exitToMainMenu() }
 
     Box(
         modifier = modifier
@@ -138,6 +142,9 @@ fun LossScreen(
     modifier: Modifier = Modifier
 ) {
     val statsSummary by viewModel.runStatsSummary.collectAsState()
+
+    // The run is already resolved here; back returns to the main menu.
+    BackHandler { viewModel.exitToMainMenu() }
 
     Box(
         modifier = modifier

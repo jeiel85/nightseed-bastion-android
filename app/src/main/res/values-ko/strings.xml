@@ -116,6 +116,10 @@
     <string name="repair_25_shards">수리 (파편 25)</string>
     <string name="cancel">취소</string>
 
+    <string name="abandon_night_title">이 밤을 포기할까요?</string>
+    <string name="abandon_night_desc">지금 나가면 메인 메뉴로 돌아갑니다. 다시 이어서 하면 마지막 낮 건설 상태부터 이 밤을 다시 시작합니다.</string>
+    <string name="abandon_night_confirm">포기</string>
+
     <string name="dusk_title">%1$d번째 밤, 황혼의 현현</string>
     <string name="omens_bargains">징조와 계약</string>
     <string name="lane_threat_preview">경로 위협 예측 (징조)</string>

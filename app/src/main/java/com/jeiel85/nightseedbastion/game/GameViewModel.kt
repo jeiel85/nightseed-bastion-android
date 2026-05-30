@@ -171,6 +171,11 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     private var spawnTimerTicks = 0
     private var coreDamagedThisNight = false
 
+    // Night index the current Dusk omen (telemetry + bargain options) was rolled for.
+    // Lets the player bounce between Day and Dusk via the back button without
+    // re-rolling bargains or stacking a second bargain in the same night.
+    private var lastDuskNight = -1
+
     private fun s(resId: Int, vararg args: Any): String =
         if (args.isEmpty()) appContext.getString(resId)
         else appContext.getString(resId, *args)
@@ -245,6 +250,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         }
         _activeBargains.value = bargainsList
 
+        lastDuskNight = -1
         _currentScreen.value = GameScreen.DAY_BUILD
     }
 
@@ -262,6 +268,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             // Start placed buildings (Only Core in an implicit slot or keep slots clean for manual build)
             _placedBuildings.value = emptyMap()
             _activeBargains.value = emptyList()
+            lastDuskNight = -1
 
             saveCurrentRunState(active = true)
             _currentScreen.value = GameScreen.DAY_BUILD
@@ -389,20 +396,31 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     // -------------------------------------------------------------
 
     fun triggerBeginDusk() {
-        _spentBargainThisDusk.value = false
-        // Pre-generate the upcoming wave's exact enemies for Dusk telemetry
-        generateUpcomingEnemies()
+        // Roll the omen only once per night. Returning to Day and re-opening Dusk
+        // (via the back button) then shows the same telemetry/bargains and keeps
+        // the already-spent state, preventing bargain re-rolls or double-dipping.
+        if (lastDuskNight != _currentNight.value) {
+            lastDuskNight = _currentNight.value
+            _spentBargainThisDusk.value = false
+            // Pre-generate the upcoming wave's exact enemies for Dusk telemetry
+            generateUpcomingEnemies()
 
-        // Generate 2 random bargains from our 4 available styles
-        val list = mutableListOf(
-            getBargainById("blood_mortar"),
-            getBargainById("hungry_walls"),
-            getBargainById("ashen_tithe"),
-            getBargainById("lantern_oath")
-        )
-        list.shuffle()
-        _duskBargainOptions.value = list.take(2)
+            // Generate 2 random bargains from our 4 available styles
+            val list = mutableListOf(
+                getBargainById("blood_mortar"),
+                getBargainById("hungry_walls"),
+                getBargainById("ashen_tithe"),
+                getBargainById("lantern_oath")
+            )
+            list.shuffle()
+            _duskBargainOptions.value = list.take(2)
+        }
         _currentScreen.value = GameScreen.DUSK_OMEN
+    }
+
+    /** Back navigation from the Dusk omen returns to the Day build phase. */
+    fun returnToDayBuild() {
+        _currentScreen.value = GameScreen.DAY_BUILD
     }
 
     fun acceptBargain(bargain: DuskBargain) {

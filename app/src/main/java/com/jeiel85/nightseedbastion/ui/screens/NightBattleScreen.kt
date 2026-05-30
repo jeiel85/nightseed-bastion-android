@@ -1,5 +1,6 @@
 package com.jeiel85.nightseedbastion.ui.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.*
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -85,6 +86,32 @@ fun NightBattleScreen(
 
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+
+    // Back during a live battle asks before abandoning the night (returning to
+    // the menu replays this night from the last saved Day build state).
+    var showAbandonConfirm by remember { mutableStateOf(false) }
+    BackHandler { showAbandonConfirm = true }
+    if (showAbandonConfirm) {
+        AlertDialog(
+            onDismissRequest = { showAbandonConfirm = false },
+            containerColor = Color(0xFF161B2E),
+            title = { Text(stringResource(R.string.abandon_night_title), color = MoonGold, fontWeight = FontWeight.Bold, size = 18.sp) },
+            text = { Text(stringResource(R.string.abandon_night_desc), color = Color.White.copy(alpha = 0.8f), size = 13.sp) },
+            confirmButton = {
+                TextButton(onClick = {
+                    showAbandonConfirm = false
+                    viewModel.exitToMainMenu()
+                }) {
+                    Text(stringResource(R.string.abandon_night_confirm), color = ShadowCrimson, fontWeight = FontWeight.Bold, size = 13.sp)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showAbandonConfirm = false }) {
+                    Text(stringResource(R.string.cancel), color = Color.White.copy(alpha = 0.6f), size = 13.sp)
+                }
+            }
+        )
+    }
 
     // --- Local Neon-Fantasy Particle System & Screen Shake State ---
     val particles = remember { mutableStateListOf<CombatParticle>() }

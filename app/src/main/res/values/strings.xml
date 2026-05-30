@@ -116,6 +116,10 @@
     <string name="repair_25_shards">REPAIR (25 Shards)</string>
     <string name="cancel">CANCEL</string>
 
+    <string name="abandon_night_title">Abandon the Night?</string>
+    <string name="abandon_night_desc">Leaving now returns you to the main menu. The night restarts from your last Day build when you resume the run.</string>
+    <string name="abandon_night_confirm">ABANDON</string>
+
     <string name="dusk_title">NIGHT %1$d DUSK APPARITION</string>
     <string name="omens_bargains">OMENS &amp; BARGAINS</string>
     <string name="lane_threat_preview">LANES THREAT PREVIEW (OMEN)</string>

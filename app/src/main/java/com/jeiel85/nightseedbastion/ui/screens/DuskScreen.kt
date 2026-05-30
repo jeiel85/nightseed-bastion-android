@@ -1,5 +1,6 @@
 package com.jeiel85.nightseedbastion.ui.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -44,6 +45,9 @@ fun DuskScreen(
     val moonshards by viewModel.moonshards.collectAsState()
     val upcomingEnemies by viewModel.upcomingEnemies.collectAsState()
     val context = LocalContext.current
+
+    // Back from the Dusk omen steps back to the Day build phase.
+    BackHandler { viewModel.returnToDayBuild() }
 
     val hasBellShrine = remember(placedBuildings) {
         placedBuildings.values.any { it.type == BuildingType.BELL_SHRINE }

@@ -1,5 +1,6 @@
 package com.jeiel85.nightseedbastion.ui.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -33,6 +34,10 @@ fun DawnRewardScreen(
     val currentNight by viewModel.currentNight.collectAsState()
     val rewardOptions by viewModel.dawnRewardOptions.collectAsState()
     val moonshards by viewModel.moonshards.collectAsState()
+
+    // A Dawn reward must be chosen to advance; swallow back so it neither skips
+    // the choice nor falls through to exit the app.
+    BackHandler {}
 
     Box(
         modifier = modifier

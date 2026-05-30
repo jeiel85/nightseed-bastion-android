@@ -1,5 +1,6 @@
 package com.jeiel85.nightseedbastion.ui.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
@@ -53,7 +54,11 @@ fun MainMenuScreen(
     val account by viewModel.accountState.collectAsState()
     var showForge by remember { mutableStateOf(false) }
     var showCodex by remember { mutableStateOf(false) }
-    
+
+    // Back closes an open inline panel first; at the root menu it falls through
+    // to the system (exits the app). The Codex AlertDialog handles back itself.
+    BackHandler(enabled = showForge) { showForge = false }
+
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
     

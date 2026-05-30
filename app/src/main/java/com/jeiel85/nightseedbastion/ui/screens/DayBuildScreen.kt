@@ -1,5 +1,6 @@
 package com.jeiel85.nightseedbastion.ui.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -53,6 +54,10 @@ fun DayBuildScreen(
 
     var activeDialogSlot by remember { mutableStateOf<Pair<PlayLane, SlotPosition>?>(null) }
     var showCoreRepairAlert by remember { mutableStateOf(false) }
+
+    // Back leaves the active run for the main menu (the run stays saved and
+    // resumable). Open slot/repair AlertDialogs intercept back on their own.
+    BackHandler { viewModel.exitToMainMenu() }
 
     // Floating stardust background transition
     val infiniteTransition = rememberInfiniteTransition(label = "stardust")
