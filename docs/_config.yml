@@ -6,7 +6,7 @@ description: >-
 author: jeiel85
 lang: ko
 url: "https://jeiel85.github.io"
-baseurl: "/nightseed-bastion"
+baseurl: "/nightseed-bastion-android"
 
 remote_theme: pages-themes/cayman@v0.2.0
 plugins:
@@ -32,7 +32,7 @@ show_downloads: true
 
 github:
   owner_name: jeiel85
-  repository_name: nightseed-bastion
-  repository_url: https://github.com/jeiel85/nightseed-bastion
-  zip_url: https://github.com/jeiel85/nightseed-bastion/archive/refs/heads/main.zip
-  tar_url: https://github.com/jeiel85/nightseed-bastion/archive/refs/heads/main.tar.gz
+  repository_name: nightseed-bastion-android
+  repository_url: https://github.com/jeiel85/nightseed-bastion-android
+  zip_url: https://github.com/jeiel85/nightseed-bastion-android/archive/refs/heads/main.zip
+  tar_url: https://github.com/jeiel85/nightseed-bastion-android/archive/refs/heads/main.tar.gz

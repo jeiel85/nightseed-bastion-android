@@ -15,7 +15,7 @@ description: 세로 모바일 요새 생존 전략 액션. Build a cursed bastio
 > 저주받은 달빛 성채를 낮 동안 건설하고, 황혼에 적의 징조를 읽고, 밤이 오면 영웅과 함께 직접 방어하세요. 충분히 많은 밤을 버텨낸 자만이 성채 한가운데 박힌 **나이트시드**를 정화할 수 있습니다.
 
 <p align="center" style="margin-top: 1.2em;">
-  <a class="btn" href="https://github.com/jeiel85/nightseed-bastion">⭐ View on GitHub</a>
+  <a class="btn" href="https://github.com/jeiel85/nightseed-bastion-android">⭐ View on GitHub</a>
   <a class="btn" href="00_START_HERE.html">🚀 Start Here</a>
   <a class="btn" href="02_GAME_DESIGN_DOCUMENT.html">📘 Game Design Doc</a>
   <a class="btn" href="13_BACKLOG.html">📋 Backlog</a>
@@ -106,7 +106,7 @@ description: 세로 모바일 요새 생존 전략 액션. Build a cursed bastio
 - ✅ Godot 프로젝트 골격 (`project.godot` + autoload 스크립트 스텁)
 - ⏳ **P0-001 → P0-010** (코어 루프 구현) 착수 예정
 
-진척은 [HISTORY.md](https://github.com/jeiel85/nightseed-bastion/blob/main/HISTORY.md) 및 [CHANGELOG.md](https://github.com/jeiel85/nightseed-bastion/blob/main/CHANGELOG.md)에서 추적됩니다.
+진척은 [HISTORY.md](https://github.com/jeiel85/nightseed-bastion-android/blob/main/HISTORY.md) 및 [CHANGELOG.md](https://github.com/jeiel85/nightseed-bastion-android/blob/main/CHANGELOG.md)에서 추적됩니다.
 
 ---
 
