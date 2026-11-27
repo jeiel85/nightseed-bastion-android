@@ -210,7 +210,7 @@ cd nightseed-bastion-android
 
 1. `app/build.gradle.kts`의 `versionCode`를 올리고 `versionName`을 태그 버전과 같게 맞춥니다(`make_release.ps1`이 해 줍니다).
 2. `docs/release-notes/NightseedBastion-v<버전>-vc<versionCode>-release-notes.txt`에 `<ko-KR>`·`<en-US>` 블록(각 500자 이하)을 씁니다. 출시 노트는 이 파일에서 읽습니다.
-3. main에 머지한 뒤 `git tag v<버전> && git push origin v<버전>`. 실행은 GitHub 환경 `play`(비밀값 보관, main·`v*` 태그만, jeiel85 승인 필요)에서 돌며, Actions 화면에서 승인해야 시작합니다.
+3. main에 머지한 뒤 `git tag v<버전> && git push origin v<버전>`. 실행은 GitHub 환경 `play`(비밀값 보관, main·`v*` 태그만)에서 태그 push와 동시에 바로 시작합니다. 승인 없음(2026-11-28 사용자 결정).
 
 - 손으로 돌릴 때: Actions → *Play release* → *Run workflow*(version 입력). `dry_run`을 켜면 빌드·서명 확인·트랙 조회만 하고 올리지 않습니다.
 - **로컬 업로드와 겹치지 않게**: 태그를 push했다면 Play Console에 손으로 올리거나 `play-publish` 스킬로 같은 버전을 다시 올리지 않습니다(같은 versionCode는 Play가 거부합니다). 로컬 `make_release.ps1`·`scripts/export-play-store-release.ps1`은 버전 올리기·노트 점검·로컬 AAB 확인용으로만 씁니다.

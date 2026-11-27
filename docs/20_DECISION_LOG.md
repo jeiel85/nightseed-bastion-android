@@ -88,7 +88,7 @@ Status: Accepted
 Decision:
 
 - Build the Play AAB and upload it to the closed-testing (`alpha`) track from `.github/workflows/play-release.yml` on `v*` tag push, instead of dragging the AAB into Play Console by hand.
-- Secrets (upload keystore, passwords, alias, Play service account) live only in the GitHub environment `play`, which requires jeiel85's approval and accepts only `main` and `v*` tags.
+- Secrets (upload keystore, passwords, alias, Play service account) live only in the GitHub environment `play`, which accepts only `main` and `v*` tags. No approval (2026-11-28 user decision: the run starts together with the git release).
 - The workflow pins the upload certificate SHA-256 (`95:0B:E1:...:35:80:28`) and refuses to upload a bundle signed with any other key (e.g. the debug fallback).
 
 Reason:
