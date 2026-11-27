@@ -8,7 +8,7 @@
   - `tools/play-publish.ps1`: 전역 스킬 `play-publish` 복사본(리눅스 keytool 경로)
   - `app/build.gradle.kts`: 릴리스 서명을 환경 변수 `NSB_UPLOAD_*`로도 읽음
   - `README.md`: Play 업로드 CI 절차
-- 결과: GitHub 환경 `play`(승인자 jeiel85, main·`v*` 태그)에 업로드 키·서비스 계정 비밀값 등록.
+- 결과: GitHub 환경 `play`(main·`v*` 태그, 승인 없음(2026-11-28 사용자 결정))에 업로드 키·서비스 계정 비밀값 등록.
 
 ## 2026-05-17 (4)
 
