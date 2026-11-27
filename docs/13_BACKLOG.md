@@ -146,3 +146,4 @@ Acceptance criteria:
 - P2-008: Play Store listing assets
 - P2-009: Privacy policy and store questionnaire
 - P2-010: v1.0.0 release candidate tag
+- P2-011: Play upload via GitHub Actions (`.github/workflows/play-release.yml`, tag `v*` → alpha) — Done 2026-11-27; first real upload on the next release tag

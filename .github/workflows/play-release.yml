@@ -1,0 +1,137 @@
+# Play용 AAB를 CI에서 빌드해 Play 비공개 테스트(alpha) 트랙에 올립니다(README "릴리스 번들 & 스토어 내보내기").
+#
+# - 태그 v<x.y.z>가 올라오면 그 버전을 올립니다. app/build.gradle.kts의 versionName이 태그와 같아야 하고,
+#   docs/release-notes/NightseedBastion-v<버전>-vc<versionCode>-release-notes.txt가 있어야 합니다.
+# - Actions 화면에서 손으로 돌릴 수도 있습니다(version 입력). dry_run을 켜면 빌드·서명 확인·트랙 조회까지만 하고 올리지 않습니다.
+# 비밀값은 GitHub 환경 'play'에만 있고, 그 환경은 jeiel85의 승인을 받아야 실행됩니다(main 브랜치·v* 태그만).
+name: Play release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: '버전 (x.y.z, app/build.gradle.kts의 versionName과 같아야 함)'
+        required: true
+      dry_run:
+        description: '올리지 않고 빌드·서명 확인·트랙 조회만'
+        type: boolean
+        default: false
+
+concurrency:
+  group: play-release
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  play:
+    runs-on: ubuntu-latest
+    environment: play
+    timeout-minutes: 40
+    env:
+      PACKAGE: com.jeiel85.nightseedbastion
+      TRACK: alpha
+      # Play 업로드 키(.keystore/nightseed-release.jks) 인증서. 다른 키로 서명된 번들은 올리기 전에 멈춥니다.
+      UPLOAD_CERT_SHA256: '95:0B:E1:66:4C:2F:63:2A:0B:5F:EA:7A:CF:A7:96:79:E5:1F:FF:D5:5B:1F:66:2E:90:74:6B:80:1C:35:80:28'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 버전·출시 노트 확인
+        id: ver
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+          DRY: ${{ inputs.dry_run }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = push ]; then VER="${GITHUB_REF_NAME#v}"; else VER="$INPUT_VERSION"; fi
+          [[ "$VER" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "::error::버전은 x.y.z여야 합니다: $VER"; exit 1; }
+          NAME=$(sed -nE 's/^\s*versionName\s*=\s*"([^"]+)".*/\1/p' app/build.gradle.kts | head -n1)
+          CODE=$(sed -nE 's/^\s*versionCode\s*=\s*([0-9]+).*/\1/p' app/build.gradle.kts | head -n1)
+          [ "$NAME" = "$VER" ] || { echo "::error::app/build.gradle.kts versionName($NAME)이 $VER가 아닙니다"; exit 1; }
+          [ -n "$CODE" ] || { echo "::error::versionCode를 읽지 못했습니다"; exit 1; }
+          NOTES="docs/release-notes/NightseedBastion-v$VER-vc$CODE-release-notes.txt"
+          [ -f "$NOTES" ] || { echo "::error::출시 노트가 없습니다: $NOTES"; exit 1; }
+          mkdir -p dist
+          python3 - "$NOTES" <<'PY'
+          import re, sys
+          s = open(sys.argv[1], encoding="utf-8-sig").read()
+          for lang, out in (("ko-KR", "dist/notes-ko.txt"), ("en-US", "dist/notes-en.txt")):
+              m = re.search(rf"<{lang}>([\s\S]*?)</{lang}>", s)
+              if not m:
+                  sys.exit(f"::error::{lang} 블록이 없습니다: {sys.argv[1]}")
+              body = m.group(1).strip()
+              if len(body) > 500:
+                  sys.exit(f"::error::{lang} 노트가 500자를 넘습니다: {len(body)}자")
+              open(out, "w", encoding="utf-8").write(body)
+              print(f"{lang}: {len(body)}자")
+          PY
+          echo "version=$VER" >> "$GITHUB_OUTPUT"
+          echo "code=$CODE" >> "$GITHUB_OUTPUT"
+          echo "dry=${DRY:-false}" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          # Robolectric 4.16은 @Config(sdk = [36]) 시험에 Java 21이 필요합니다.
+          java-version: '21'
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: 서명 키 놓기
+        env:
+          KEYSTORE_B64: ${{ secrets.NSB_PLAY_UPLOAD_KEYSTORE_B64 }}
+        run: |
+          printf '%s' "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/nsb-upload.jks"
+          [ -s "$RUNNER_TEMP/nsb-upload.jks" ]
+
+      - name: 시험 → AAB 빌드
+        env:
+          NSB_UPLOAD_STORE_FILE: ${{ runner.temp }}/nsb-upload.jks
+          NSB_UPLOAD_STORE_PASSWORD: ${{ secrets.NSB_PLAY_UPLOAD_STORE_PASSWORD }}
+          NSB_UPLOAD_KEY_ALIAS: ${{ secrets.NSB_PLAY_UPLOAD_KEY_ALIAS }}
+          NSB_UPLOAD_KEY_PASSWORD: ${{ secrets.NSB_PLAY_UPLOAD_KEY_PASSWORD }}
+          VER: ${{ steps.ver.outputs.version }}
+          CODE: ${{ steps.ver.outputs.code }}
+        run: |
+          ./gradlew --no-daemon :app:testDebugUnitTest :app:bundleRelease
+          AAB="dist/NightseedBastion-v$VER-vc$CODE.aab"
+          cp app/build/outputs/bundle/release/app-release.aab "$AAB"
+          echo "AAB=$AAB" >> "$GITHUB_ENV"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nightseed-play-${{ steps.ver.outputs.version }}
+          path: |
+            ${{ env.AAB }}
+            dist/notes-ko.txt
+            dist/notes-en.txt
+          retention-days: 30
+
+      - name: Play 트랙 상태(올리기 전)
+        env:
+          PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+        run: pwsh -NoProfile -File tools/play-publish.ps1 -PackageName "$PACKAGE" -ShowTracks
+
+      - name: Alpha에 올리기
+        env:
+          PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+          VER: ${{ steps.ver.outputs.version }}
+          CODE: ${{ steps.ver.outputs.code }}
+          DRY: ${{ steps.ver.outputs.dry }}
+        run: |
+          DRYFLAG=(); [ "$DRY" = true ] && DRYFLAG=(-DryRun)
+          pwsh -NoProfile -File tools/play-publish.ps1 -PackageName "$PACKAGE" -Track "$TRACK" -AabPath "$AAB" \
+            -ExpectedVersionCode "$CODE" -ExpectedUploadCertSha256 "$UPLOAD_CERT_SHA256" -VersionName "$VER" \
+            -NotesKoFile dist/notes-ko.txt -NotesEnFile dist/notes-en.txt "${DRYFLAG[@]}"
+
+      - name: Play 트랙 상태(올린 뒤)
+        if: steps.ver.outputs.dry != 'true'
+        env:
+          PLAY_SERVICE_ACCOUNT_JSON: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+        run: pwsh -NoProfile -File tools/play-publish.ps1 -PackageName "$PACKAGE" -ShowTracks
+
+      - name: 키 지우기
+        if: always()
+        run: rm -f "$RUNNER_TEMP/nsb-upload.jks"

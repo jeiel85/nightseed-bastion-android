@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### Release
+- Play 업로드 자동화: 태그 `v*`를 push하면 GitHub Actions가 시험 → AAB 빌드 → 업로드 키 지문 확인 → Play 비공개 테스트(alpha) 업로드까지 진행 (`.github/workflows/play-release.yml`)
+
 ### Added
 - `New Run` 버튼에서 기본 Moonwell Bastion 런을 시작하고 mock `GameRoot`로 진입
 - P0-003용 `GameRoot` mock 화면, 상태 디버그 오버레이, 수동 phase 진행 버튼

@@ -184,7 +184,7 @@ nightseed-bastion-android/
 ### 1. 필수 도구
 
 - [Android Studio](https://developer.android.com/studio) (최신) + Android SDK
-- JDK 17
+- JDK 17 이상 (시험은 JDK 21 — Robolectric SDK 36)
 
 ### 2. 빌드 & 실행
 
@@ -202,7 +202,20 @@ cd nightseed-bastion-android
 ./scripts/export-play-store-release.ps1            # 노트 500자 검증 + Build\로 복사
 ```
 
-> 릴리스 서명은 루트의 `keystore.properties`(커밋 제외)로 설정합니다. 없으면 디버그 키로 폴백합니다.
+> 릴리스 서명은 환경 변수 `NSB_UPLOAD_STORE_FILE`·`NSB_UPLOAD_STORE_PASSWORD`·`NSB_UPLOAD_KEY_ALIAS`·`NSB_UPLOAD_KEY_PASSWORD`(CI용)가 있으면 그것을, 없으면 루트의 `keystore.properties`(커밋 제외)를 씁니다. 둘 다 없으면 디버그 키로 폴백합니다.
+
+#### Play 업로드는 CI로 (`.github/workflows/play-release.yml`)
+
+새 버전은 **태그 `v<x.y.z>`를 push하면** GitHub Actions가 시험(`:app:testDebugUnitTest`) → AAB 빌드 → 업로드 키 인증서 SHA-256 확인 → Play **비공개 테스트(alpha)** 트랙 업로드 → 트랙 상태 조회까지 합니다. 지금 이 앱이 쓰는 Play 트랙은 alpha 하나뿐이라 그 트랙에만 올리고, 프로덕션에는 올리지 않습니다.
+
+1. `app/build.gradle.kts`의 `versionCode`를 올리고 `versionName`을 태그 버전과 같게 맞춥니다(`make_release.ps1`이 해 줍니다).
+2. `docs/release-notes/NightseedBastion-v<버전>-vc<versionCode>-release-notes.txt`에 `<ko-KR>`·`<en-US>` 블록(각 500자 이하)을 씁니다. 출시 노트는 이 파일에서 읽습니다.
+3. main에 머지한 뒤 `git tag v<버전> && git push origin v<버전>`. 실행은 GitHub 환경 `play`(비밀값 보관, main·`v*` 태그만, jeiel85 승인 필요)에서 돌며, Actions 화면에서 승인해야 시작합니다.
+
+- 손으로 돌릴 때: Actions → *Play release* → *Run workflow*(version 입력). `dry_run`을 켜면 빌드·서명 확인·트랙 조회만 하고 올리지 않습니다.
+- **로컬 업로드와 겹치지 않게**: 태그를 push했다면 Play Console에 손으로 올리거나 `play-publish` 스킬로 같은 버전을 다시 올리지 않습니다(같은 versionCode는 Play가 거부합니다). 로컬 `make_release.ps1`·`scripts/export-play-store-release.ps1`은 버전 올리기·노트 점검·로컬 AAB 확인용으로만 씁니다.
+- 이 저장소에는 다른 릴리스 워크플로가 없어서 같은 태그로 두 번 실행되지 않습니다(GitHub 릴리스 APK는 내지 않습니다).
+- `tools/play-publish.ps1`은 전역 스킬 `play-publish`의 복사본입니다(리눅스용 keytool 경로만 다름). 고칠 때는 원본과 함께 맞춥니다.
 
 > 아래 *프리프로덕션 설계 자료*(Godot 프로젝트, `docs/00~20`)는 과거 계획 기록으로만 보존되며 현재 빌드와 무관합니다.
 
