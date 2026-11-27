@@ -32,7 +32,14 @@ android {
 
   signingConfigs {
     create("release") {
-      if (keystorePropertiesFile.exists()) {
+      // CI(.github/workflows/play-release.yml)는 환경 변수로 Play 업로드 키를 넘깁니다.
+      val envStoreFile = System.getenv("NSB_UPLOAD_STORE_FILE")
+      if (!envStoreFile.isNullOrBlank()) {
+        storeFile = rootProject.file(envStoreFile)
+        storePassword = System.getenv("NSB_UPLOAD_STORE_PASSWORD")
+        keyAlias = System.getenv("NSB_UPLOAD_KEY_ALIAS")
+        keyPassword = System.getenv("NSB_UPLOAD_KEY_PASSWORD")
+      } else if (keystorePropertiesFile.exists()) {
         val storePath = keystoreProperties["storeFile"] as String?
         storeFile = if (storePath != null) {
           val f = File(storePath)

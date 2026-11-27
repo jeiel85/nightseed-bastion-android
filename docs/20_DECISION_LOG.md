@@ -82,3 +82,18 @@ Reason:
 - Keeping the mock controller in `scenes/game/GameRoot.tscn` lets later P0 items replace placeholders incrementally without changing menu routing.
 
 Status: Accepted
+
+## 2026-11-27 - Play upload runs in GitHub Actions
+
+Decision:
+
+- Build the Play AAB and upload it to the closed-testing (`alpha`) track from `.github/workflows/play-release.yml` on `v*` tag push, instead of dragging the AAB into Play Console by hand.
+- Secrets (upload keystore, passwords, alias, Play service account) live only in the GitHub environment `play`, which requires jeiel85's approval and accepts only `main` and `v*` tags.
+- The workflow pins the upload certificate SHA-256 (`95:0B:E1:...:35:80:28`) and refuses to upload a bundle signed with any other key (e.g. the debug fallback).
+
+Reason:
+
+- Manual uploads let the Play track fall behind GitHub tags; CI makes every tag land on the same track.
+- `alpha` is the only Play track in use (2026-11-27: alpha vc10 / 1.0.7, internal empty); production is not automated.
+
+Status: Accepted
