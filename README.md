@@ -184,7 +184,7 @@ nightseed-bastion-android/
 ### 1. 필수 도구
 
 - [Android Studio](https://developer.android.com/studio) (최신) + Android SDK
-- JDK 17
+- JDK 17 이상 (시험은 JDK 21 — Robolectric SDK 36)
 
 ### 2. 빌드 & 실행
 

@@ -74,7 +74,8 @@ jobs:
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
-          java-version: '17'
+          # Robolectric 4.16은 @Config(sdk = [36]) 시험에 Java 21이 필요합니다.
+          java-version: '21'
 
       - uses: gradle/actions/setup-gradle@v4
 
